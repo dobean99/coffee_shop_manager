@@ -52,6 +52,11 @@ struct RootTabView: View {
                     Label("Settings", systemImage: "gear")
                 }
         }
+        .tint(.themeAccent)
+        .background(.themeBackground)
+        .ignoresSafeArea()
+        .toolbarBackground(.themeSurface, for: .tabBar)
+        .toolbarBackground(.visible, for: .tabBar)
     }
 }
 

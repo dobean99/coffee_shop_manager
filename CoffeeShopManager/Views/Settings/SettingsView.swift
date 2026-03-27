@@ -24,6 +24,8 @@ struct SettingsView: View {
                 aboutSection
             }
             .navigationTitle("settings.title")
+            .scrollContentBackground(.hidden)
+            .background(.themeBackground)
             .alert("settings.reset.title", isPresented: $viewModel.isShowingResetConfirmation) {
                 Button("settings.cancel", role: .cancel) { }
                 Button("settings.reset.confirm", role: .destructive) {
@@ -38,6 +40,7 @@ struct SettingsView: View {
                 Text(viewModel.exportMessage ?? "")
             }
         }
+        .tint(.themeAccent)
         .preferredColorScheme(viewModel.isDarkMode ? .dark : .light)
         .environment(\.locale, Locale(identifier: viewModel.appLanguage.localeIdentifier))
     }

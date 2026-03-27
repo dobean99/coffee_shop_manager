@@ -25,7 +25,7 @@ struct DashboardView: View {
                 }
                 .padding(16)
             }
-            .background(Color(.systemGroupedBackground))
+            .background(.themeBackground)
             .navigationTitle("Dashboard")
         }
     }
@@ -84,17 +84,17 @@ private struct DashboardStatCard: View {
 
             Text(title)
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.themeSubtext)
 
             Text(value)
                 .font(.title2.bold())
-                .foregroundStyle(.primary)
+                .foregroundStyle(.themeText)
                 .lineLimit(1)
                 .minimumScaleFactor(0.75)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(14)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .background(.themeSurface, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
     }
 }
 
@@ -111,7 +111,7 @@ private struct RevenueChartCardView: View {
                     x: .value("Hour", point.hourLabel),
                     y: .value("Revenue", (point.revenue as NSDecimalNumber).doubleValue)
                 )
-                .foregroundStyle(.brown.gradient)
+                .foregroundStyle(.themePrimary.gradient)
                 .cornerRadius(4)
             }
             .frame(height: 220)
@@ -120,7 +120,7 @@ private struct RevenueChartCardView: View {
             }
         }
         .padding(16)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .background(.themeSurface, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
     }
 }
 
@@ -136,7 +136,7 @@ private struct TopSellingCardView: View {
                 HStack {
                     Text("#\(index + 1)")
                         .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.themeSubtext)
                         .frame(width: 32, alignment: .leading)
 
                     Text(drink.drinkName)
@@ -146,7 +146,7 @@ private struct TopSellingCardView: View {
 
                     Text("\(drink.unitsSold) sold")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.themeSubtext)
                 }
                 .padding(.vertical, 4)
 
@@ -156,7 +156,7 @@ private struct TopSellingCardView: View {
             }
         }
         .padding(16)
-        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .background(.themeSurface, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
     }
 }
 
