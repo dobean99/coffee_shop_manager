@@ -5,6 +5,7 @@ final class SettingsViewModel: ObservableObject {
     @AppStorage("settings.address") var address: String = "123 Bean Street"
     @AppStorage("settings.currency") private var currencyRawValue: String = CurrencyOption.usd.rawValue
     @AppStorage("settings.taxPercentage") var taxPercentage: Double = 8.5
+    @AppStorage("settings.language") private var languageRawValue: String = AppLanguage.english.rawValue
 
     @AppStorage("settings.darkMode") var isDarkMode: Bool = false
     @AppStorage("settings.soundEffects") var soundEffectsEnabled: Bool = true
@@ -25,12 +26,18 @@ final class SettingsViewModel: ObservableObject {
         set { currencyRawValue = newValue.rawValue }
     }
 
+    var appLanguage: AppLanguage {
+        get { AppLanguage(rawValue: languageRawValue) ?? .english }
+        set { languageRawValue = newValue.rawValue }
+    }
+
     var currentSettingsSnapshot: AppSettings {
         AppSettings(
             shopName: shopName,
             address: address,
             currency: currency,
             taxPercentage: taxPercentage,
+            language: appLanguage,
             isDarkMode: isDarkMode,
             soundEffectsEnabled: soundEffectsEnabled,
             notificationsEnabled: notificationsEnabled
@@ -66,7 +73,12 @@ final class SettingsViewModel: ObservableObject {
 
     func exportData() {
         let settings = currentSettingsSnapshot
-        exportMessage = "Exported \(staffMembers.count) staff(s), currency \(settings.currency.rawValue), tax \(String(format: "%.1f", settings.taxPercentage))%."
+        exportMessage = localizedFormat(
+            "settings.export.message",
+            staffMembers.count,
+            settings.currency.rawValue,
+            settings.taxPercentage
+        )
     }
 
     func resetAllData() {
@@ -74,6 +86,7 @@ final class SettingsViewModel: ObservableObject {
         address = ""
         currency = .usd
         taxPercentage = 0
+        appLanguage = .english
         isDarkMode = false
         soundEffectsEnabled = true
         notificationsEnabled = true
@@ -81,5 +94,24 @@ final class SettingsViewModel: ObservableObject {
         staffMembers = []
         newStaffName = ""
         newStaffRole = ""
+    }
+
+    private var localizationBundle: Bundle {
+        guard
+            let path = Bundle.main.path(forResource: appLanguage.localeIdentifier, ofType: "lproj"),
+            let bundle = Bundle(path: path)
+        else {
+            return .main
+        }
+        return bundle
+    }
+
+    func localized(_ key: String) -> String {
+        localizationBundle.localizedString(forKey: key, value: nil, table: nil)
+    }
+
+    func localizedFormat(_ key: String, _ arguments: CVarArg...) -> String {
+        let format = localized(key)
+        return String(format: format, locale: Locale(identifier: appLanguage.localeIdentifier), arguments: arguments)
     }
 }

@@ -1,0 +1,37 @@
+"settings.title" = "Settings";
+"settings.section.shop" = "Shop Settings";
+"settings.section.preferences" = "App Preferences";
+"settings.section.staff" = "Staff Settings";
+"settings.section.data" = "Data Management";
+"settings.section.about" = "About";
+
+"settings.shop.name" = "Shop name";
+"settings.shop.address" = "Address";
+"settings.shop.currency" = "Currency";
+"settings.shop.tax" = "Tax";
+"settings.shop.tax.adjust" = "Adjust tax";
+
+"settings.preferences.language" = "Language";
+"settings.preferences.darkMode" = "Dark Mode";
+"settings.preferences.soundEffects" = "Sound Effects";
+"settings.preferences.notifications" = "Notifications";
+
+"settings.staff.name" = "Staff name";
+"settings.staff.role" = "Role";
+"settings.staff.add" = "Add Staff Member";
+"settings.staff.empty.title" = "No Staff Members";
+"settings.staff.empty.description" = "Add a team member to get started.";
+
+"settings.data.export" = "Export Data";
+"settings.data.reset" = "Reset All Data";
+"settings.export.complete" = "Export Complete";
+"settings.export.message" = "Exported %d staff(s), currency %@, tax %.1f%%.";
+
+"settings.reset.title" = "Reset All Data?";
+"settings.reset.message" = "This action clears settings and staff data. It cannot be undone.";
+"settings.cancel" = "Cancel";
+"settings.reset.confirm" = "Reset";
+
+"settings.about.version" = "App Version";
+"settings.about.developer" = "Developer";
+"settings.about.support" = "Support";

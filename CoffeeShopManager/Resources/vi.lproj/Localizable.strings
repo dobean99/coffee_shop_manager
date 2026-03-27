@@ -1,0 +1,37 @@
+"settings.title" = "Cài đặt";
+"settings.section.shop" = "Cài đặt cửa hàng";
+"settings.section.preferences" = "Tùy chọn ứng dụng";
+"settings.section.staff" = "Cài đặt nhân viên";
+"settings.section.data" = "Quản lý dữ liệu";
+"settings.section.about" = "Thông tin";
+
+"settings.shop.name" = "Tên cửa hàng";
+"settings.shop.address" = "Địa chỉ";
+"settings.shop.currency" = "Tiền tệ";
+"settings.shop.tax" = "Thuế";
+"settings.shop.tax.adjust" = "Điều chỉnh thuế";
+
+"settings.preferences.language" = "Ngôn ngữ";
+"settings.preferences.darkMode" = "Chế độ tối";
+"settings.preferences.soundEffects" = "Âm thanh";
+"settings.preferences.notifications" = "Thông báo";
+
+"settings.staff.name" = "Tên nhân viên";
+"settings.staff.role" = "Vai trò";
+"settings.staff.add" = "Thêm nhân viên";
+"settings.staff.empty.title" = "Chưa có nhân viên";
+"settings.staff.empty.description" = "Thêm nhân viên để bắt đầu.";
+
+"settings.data.export" = "Xuất dữ liệu";
+"settings.data.reset" = "Đặt lại toàn bộ dữ liệu";
+"settings.export.complete" = "Xuất dữ liệu thành công";
+"settings.export.message" = "Đã xuất %d nhân viên, tiền tệ %@, thuế %.1f%%.";
+
+"settings.reset.title" = "Đặt lại toàn bộ dữ liệu?";
+"settings.reset.message" = "Hành động này sẽ xóa cài đặt và dữ liệu nhân viên. Không thể hoàn tác.";
+"settings.cancel" = "Hủy";
+"settings.reset.confirm" = "Đặt lại";
+
+"settings.about.version" = "Phiên bản";
+"settings.about.developer" = "Nhà phát triển";
+"settings.about.support" = "Hỗ trợ";

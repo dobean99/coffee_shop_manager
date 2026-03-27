@@ -23,31 +23,32 @@ struct SettingsView: View {
                 dataManagementSection
                 aboutSection
             }
-            .navigationTitle("Settings")
-            .alert("Reset All Data?", isPresented: $viewModel.isShowingResetConfirmation) {
-                Button("Cancel", role: .cancel) { }
-                Button("Reset", role: .destructive) {
+            .navigationTitle("settings.title")
+            .alert("settings.reset.title", isPresented: $viewModel.isShowingResetConfirmation) {
+                Button("settings.cancel", role: .cancel) { }
+                Button("settings.reset.confirm", role: .destructive) {
                     viewModel.resetAllData()
                 }
             } message: {
-                Text("This action clears settings and staff data. It cannot be undone.")
+                Text("settings.reset.message")
             }
-            .alert("Export Complete", isPresented: exportAlertPresented) {
+            .alert("settings.export.complete", isPresented: exportAlertPresented) {
                 Button("OK", role: .cancel) { }
             } message: {
                 Text(viewModel.exportMessage ?? "")
             }
         }
         .preferredColorScheme(viewModel.isDarkMode ? .dark : .light)
+        .environment(\.locale, Locale(identifier: viewModel.appLanguage.localeIdentifier))
     }
 
     private var shopSettingsSection: some View {
-        Section("Shop Settings") {
-            TextField("Shop name", text: $viewModel.shopName)
-            TextField("Address", text: $viewModel.address, axis: .vertical)
+        Section("settings.section.shop") {
+            TextField("settings.shop.name", text: $viewModel.shopName)
+            TextField("settings.shop.address", text: $viewModel.address, axis: .vertical)
                 .lineLimit(2...4)
 
-            Picker("Currency", selection: Binding(
+            Picker("settings.shop.currency", selection: Binding(
                 get: { viewModel.currency },
                 set: { viewModel.currency = $0 }
             )) {
@@ -58,9 +59,9 @@ struct SettingsView: View {
 
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    Text("Tax")
+                    Text("settings.shop.tax")
                     Spacer()
-                    TextField("Tax", value: $viewModel.taxPercentage, format: .number.precision(.fractionLength(0...2)))
+                    TextField("settings.shop.tax", value: $viewModel.taxPercentage, format: .number.precision(.fractionLength(0...2)))
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                         .frame(width: 80)
@@ -68,35 +69,43 @@ struct SettingsView: View {
                         .foregroundStyle(.secondary)
                 }
 
-                Stepper("Adjust tax", value: $viewModel.taxPercentage, in: 0...30, step: 0.5)
+                Stepper("settings.shop.tax.adjust", value: $viewModel.taxPercentage, in: 0...30, step: 0.5)
                     .labelsHidden()
             }
         }
     }
 
     private var appPreferencesSection: some View {
-        Section("App Preferences") {
-            Toggle("Dark Mode", isOn: $viewModel.isDarkMode)
-            Toggle("Sound Effects", isOn: $viewModel.soundEffectsEnabled)
-            Toggle("Notifications", isOn: $viewModel.notificationsEnabled)
+        Section("settings.section.preferences") {
+            Picker("settings.preferences.language", selection: Binding(
+                get: { viewModel.appLanguage },
+                set: { viewModel.appLanguage = $0 }
+            )) {
+                ForEach(AppLanguage.allCases) { language in
+                    Text(language.displayName).tag(language)
+                }
+            }
+            Toggle("settings.preferences.darkMode", isOn: $viewModel.isDarkMode)
+            Toggle("settings.preferences.soundEffects", isOn: $viewModel.soundEffectsEnabled)
+            Toggle("settings.preferences.notifications", isOn: $viewModel.notificationsEnabled)
         }
     }
 
     private var staffSettingsSection: some View {
-        Section("Staff Settings") {
-            TextField("Staff name", text: $viewModel.newStaffName)
-            TextField("Role", text: $viewModel.newStaffRole)
+        Section("settings.section.staff") {
+            TextField("settings.staff.name", text: $viewModel.newStaffName)
+            TextField("settings.staff.role", text: $viewModel.newStaffRole)
 
-            Button("Add Staff Member") {
+            Button("settings.staff.add") {
                 viewModel.addStaffMember()
             }
             .disabled(!viewModel.canAddStaffMember)
 
             if viewModel.staffMembers.isEmpty {
                 ContentUnavailableView(
-                    "No Staff Members",
+                    "settings.staff.empty.title",
                     systemImage: "person.2.slash",
-                    description: Text("Add a team member to get started.")
+                    description: Text("settings.staff.empty.description")
                 )
             } else {
                 ForEach(viewModel.staffMembers) { member in
@@ -116,22 +125,22 @@ struct SettingsView: View {
     }
 
     private var dataManagementSection: some View {
-        Section("Data Management") {
-            Button("Export Data") {
+        Section("settings.section.data") {
+            Button("settings.data.export") {
                 viewModel.exportData()
             }
 
-            Button("Reset All Data", role: .destructive) {
+            Button("settings.data.reset", role: .destructive) {
                 viewModel.isShowingResetConfirmation = true
             }
         }
     }
 
     private var aboutSection: some View {
-        Section("About") {
-            LabeledContent("App Version", value: viewModel.appVersion)
-            LabeledContent("Developer", value: "Coffee Shop Engineering")
-            LabeledContent("Support", value: "support@coffeeshopmanager.app")
+        Section("settings.section.about") {
+            LabeledContent("settings.about.version", value: viewModel.appVersion)
+            LabeledContent("settings.about.developer", value: "Coffee Shop Engineering")
+            LabeledContent("settings.about.support", value: "support@coffeeshopmanager.app")
         }
     }
 }
