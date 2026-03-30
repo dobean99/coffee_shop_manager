@@ -1,7 +1,7 @@
 import Foundation
 
 enum CurrencyFormatter {
-    static func string(for amount: Decimal, code: String = "USD") -> String {
+    static func string(for amount: Decimal, code: String = "VND") -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.currencyCode = code

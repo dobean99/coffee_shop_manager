@@ -5,6 +5,7 @@ final class CoffeePOSViewModel: ObservableObject {
     @Published private(set) var drinks: [POSDrinkItem]
     @Published private(set) var cartItems: [POSCartItem] = []
     @Published private(set) var completedOrders: [POSCompletedOrder] = []
+    @Published var activePayment: QRPaymentInfo?
     private var cancellables = Set<AnyCancellable>()
 
     init(drinks: [POSDrinkItem] = CoffeePOSViewModel.mockDrinks) {
@@ -49,6 +50,7 @@ final class CoffeePOSViewModel: ObservableObject {
     func checkout() {
         guard !cartItems.isEmpty else { return }
 
+        let checkoutTotal = totalPrice
         let completedOrder = POSCompletedOrder(
             lines: cartItems.map { item in
                 POSCompletedOrderLine(
@@ -66,7 +68,22 @@ final class CoffeePOSViewModel: ObservableObject {
             }
         )
         NotificationCenter.default.post(name: .posOrderCreated, object: order)
+
+        let shortOrderID = String(completedOrder.id.uuidString.prefix(8)).uppercased()
+        let transferContent = "ORDER-\(shortOrderID)"
+        activePayment = QRPaymentInfo(
+            id: transferContent,
+            amount: checkoutTotal,
+            bankName: "Vietcombank",
+            bankBin: "970436",
+            accountNumber: "0271001066908",
+            transferContent: transferContent
+        )
         cartItems.removeAll()
+    }
+
+    func clearActivePayment() {
+        activePayment = nil
     }
 
     private static let mockDrinks: [POSDrinkItem] = [

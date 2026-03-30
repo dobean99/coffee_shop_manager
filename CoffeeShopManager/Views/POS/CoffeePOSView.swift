@@ -4,7 +4,7 @@ struct CoffeePOSView: View {
     @ObservedObject var viewModel: CoffeePOSViewModel
 
     private let columns = [
-        GridItem(.adaptive(minimum: 150), spacing: 12)
+        GridItem(.adaptive(minimum: 300), spacing: 12)
     ]
 
     var body: some View {
@@ -33,10 +33,15 @@ struct CoffeePOSView: View {
                         onDecrease: viewModel.decreaseQuantity,
                         onCheckout: viewModel.checkout
                     )
-                    .frame(width: max(300, geometry.size.width * 0.36))
+//                    .frame(width: max(300, geometry.size.width * 0.36))
                 }
             }
-            .navigationTitle("Coffee POS")
+//            .navigationTitle("Coffee POS")
+        }
+        .sheet(item: $viewModel.activePayment, onDismiss: viewModel.clearActivePayment) { payment in
+            CheckoutSuccessView(payment: payment) {
+                viewModel.clearActivePayment()
+            }
         }
     }
 }

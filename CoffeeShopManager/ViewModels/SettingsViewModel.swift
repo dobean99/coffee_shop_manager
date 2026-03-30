@@ -3,7 +3,7 @@ import SwiftUI
 final class SettingsViewModel: ObservableObject {
     @AppStorage("settings.shopName") var shopName: String = "Brew Haven Coffee"
     @AppStorage("settings.address") var address: String = "123 Bean Street"
-    @AppStorage("settings.currency") private var currencyRawValue: String = CurrencyOption.usd.rawValue
+    @AppStorage("settings.currency") private var currencyRawValue: String = CurrencyOption.vnd.rawValue
     @AppStorage("settings.taxPercentage") var taxPercentage: Double = 8.5
     @AppStorage("settings.language") private var languageRawValue: String = AppLanguage.english.rawValue
 
@@ -22,7 +22,7 @@ final class SettingsViewModel: ObservableObject {
     @Published var exportMessage: String?
 
     var currency: CurrencyOption {
-        get { CurrencyOption(rawValue: currencyRawValue) ?? .usd }
+        get { CurrencyOption(rawValue: currencyRawValue) ?? .vnd }
         set { currencyRawValue = newValue.rawValue }
     }
 
@@ -84,7 +84,7 @@ final class SettingsViewModel: ObservableObject {
     func resetAllData() {
         shopName = "Coffee Shop"
         address = ""
-        currency = .usd
+        currency = .vnd
         taxPercentage = 0
         appLanguage = .english
         isDarkMode = false
