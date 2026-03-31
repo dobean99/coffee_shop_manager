@@ -41,7 +41,6 @@ struct SettingsView: View {
             }
         }
         .tint(.themeAccent)
-        .preferredColorScheme(viewModel.isDarkMode ? .dark : .light)
         .environment(\.locale, Locale(identifier: viewModel.appLanguage.localeIdentifier))
     }
 

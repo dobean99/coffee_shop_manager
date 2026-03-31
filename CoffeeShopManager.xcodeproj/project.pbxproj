@@ -8,6 +8,13 @@
 
 /* Begin PBXFileReference section */
 		EBB3934C2F7635140040B6DC /* CoffeeShopManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeShopManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBB393DB2F7B85760040B6DC /* common-mistakes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "common-mistakes.md"; sourceTree = "<group>"; };
+		EBB393DC2F7B85760040B6DC /* concurrency.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = concurrency.md; sourceTree = "<group>"; };
+		EBB393DD2F7B85760040B6DC /* error-handling.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "error-handling.md"; sourceTree = "<group>"; };
+		EBB393DE2F7B85760040B6DC /* observable.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = observable.md; sourceTree = "<group>"; };
+		EBB393E02F7B85760040B6DC /* _meta.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = _meta.json; sourceTree = "<group>"; };
+		EBB393E12F7B85760040B6DC /* SKILL.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SKILL.md; sourceTree = "<group>"; };
+		EBB393E32F7B86E40040B6DC /* SKILL.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SKILL.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +39,7 @@
 		EBB393432F7635140040B6DC = {
 			isa = PBXGroup;
 			children = (
+				EBB393D92F7B84D10040B6DC /* .agents */,
 				EBB3934E2F7635140040B6DC /* CoffeeShopManager */,
 				EBB3934D2F7635140040B6DC /* Products */,
 			);
@@ -43,6 +51,52 @@
 				EBB3934C2F7635140040B6DC /* CoffeeShopManager.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		EBB393D92F7B84D10040B6DC /* .agents */ = {
+			isa = PBXGroup;
+			children = (
+				EBB393DA2F7B84F80040B6DC /* skills */,
+			);
+			path = .agents;
+			sourceTree = "<group>";
+		};
+		EBB393DA2F7B84F80040B6DC /* skills */ = {
+			isa = PBXGroup;
+			children = (
+				EBB393E22F7B85760040B6DC /* swift-code-review */,
+				EBB393E42F7B86E40040B6DC /* swiftui-patterns */,
+			);
+			path = skills;
+			sourceTree = "<group>";
+		};
+		EBB393DF2F7B85760040B6DC /* references */ = {
+			isa = PBXGroup;
+			children = (
+				EBB393DB2F7B85760040B6DC /* common-mistakes.md */,
+				EBB393DC2F7B85760040B6DC /* concurrency.md */,
+				EBB393DD2F7B85760040B6DC /* error-handling.md */,
+				EBB393DE2F7B85760040B6DC /* observable.md */,
+			);
+			path = references;
+			sourceTree = "<group>";
+		};
+		EBB393E22F7B85760040B6DC /* swift-code-review */ = {
+			isa = PBXGroup;
+			children = (
+				EBB393DF2F7B85760040B6DC /* references */,
+				EBB393E02F7B85760040B6DC /* _meta.json */,
+				EBB393E12F7B85760040B6DC /* SKILL.md */,
+			);
+			path = "swift-code-review";
+			sourceTree = "<group>";
+		};
+		EBB393E42F7B86E40040B6DC /* swiftui-patterns */ = {
+			isa = PBXGroup;
+			children = (
+				EBB393E32F7B86E40040B6DC /* SKILL.md */,
+			);
+			path = "swiftui-patterns";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
